@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Parking Spaces — PARK-O-BUDDY</title>
+  <meta name="description" content="Search verified parking spaces with real-time rates, interactive map pins, EV charging, and guaranteed slots.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+  <!-- UNIVERSAL NAVIGATION HEADER (SHREYA INTEGRATION) -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🅿️</div>
+        <span>PARK-O-<span class="buddy">BUDDY</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link active">Find Parking</a></li>
+        <li><a href="host.html" class="nav-link">Rent Parking</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="auth.html" class="btn btn-outline btn-sm">Log In</a>
+        <a href="auth.html" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- SEARCH & RESULTS SECTION (AVIKA) -->
+  <main>
+    <div class="container" style="padding: 36px 20px;">
+      <!-- Top Search & Filter Bar -->
+      <div class="search-bar-advanced">
+        <div class="flex-between" style="margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h2 style="font-size: 1.6rem;">Find Verified Parking Spaces</h2>
+            <p class="text-muted" style="font-size: 0.9rem;">Filter by amenities, vehicle type, and distance from your destination.</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label for="sortSelect" style="font-size: 0.88rem; font-weight: 600; color: var(--text-muted);">Sort By:</label>
+            <select id="sortSelect" class="form-select" style="width: auto; padding: 6px 12px; font-size: 0.88rem;">
+              <option value="recommended">Recommended</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+              <option value="distance">Nearest First</option>
+            </select>
+          </div>
+        </div>
+        <form id="searchForm">
+          <div class="form-row" style="grid-template-columns: 2fr 1fr 1fr 1fr auto; align-items: end;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">📍 Destination Location</label>
+              <input type="text" id="destInput" class="form-input" placeholder="Enter landmark, metro or area" value="Cyber City, Tech Park">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">📅 Date</label>
+              <input type="date" id="dateInput" class="form-input" value="2026-09-10">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">🕘 Check-in</label>
+              <input type="time" id="checkinInput" class="form-input" value="09:00">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">🕘 Check-out</label>
+              <input type="time" id="checkoutInput" class="form-input" value="13:00">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <button type="submit" class="btn btn-primary" style="height: 42px; padding: 0 20px;">Update Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Filter Chips Bar (Avika) -->
+      <div class="filters-bar" id="filtersBar">
+        <button type="button" class="filter-chip active" data-filter="all">All Spots</button>
+        <button type="button" class="filter-chip" data-filter="price">💰 Price: Low to High</button>
+        <button type="button" class="filter-chip" data-filter="distance">🚶 Distance &lt; 0.5 km</button>
+        <button type="button" class="filter-chip" data-filter="covered">🏠 Covered Parking</button>
+        <button type="button" class="filter-chip" data-filter="ev">⚡ EV Charging</button>
+        <button type="button" class="filter-chip" data-filter="rating">⭐ Rating 4.8+</button>
+      </div>
+
+      <!-- Results Count Header -->
+      <div style="margin-bottom: 18px;">
+        <p class="text-muted" id="resultsCountText">
+          Showing <strong class="text-green font-bold" id="spotsCount">3</strong> verified spaces near <strong id="locationLabel">Cyber City, Tech Park</strong>
+        </p>
+      </div>
+
+      <!-- Two-Column Results Layout: Listings & Interactive Map -->
+      <div class="results-layout">
+        <div class="listings-grid" id="listingsContainer">
+          <div class="no-results-card card" id="noResultsMessage" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No parking spaces found</h3>
+            <p class="text-muted" style="margin-top: 6px;" id="noResultsText">
+              We couldn't find any parking spaces matching your criteria. Try adjusting your destination or filters.
+            </p>
+            <div style="margin-top: 18px;">
+              <button type="button" class="btn btn-primary btn-sm" id="resetSearchBtn">Reset All Filters</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Interactive Map Graphic (Avika) -->
+        <div class="map-wrapper">
+          <div class="map-box" id="mapBox">
+            <div class="map-grid-pattern"></div>
+            <div class="map-road road-h" style="top: 38%; height: 28px;"></div>
+            <div class="map-road road-h" style="top: 72%; height: 24px;"></div>
+            <div class="map-road road-v" style="left: 45%; width: 28px;"></div>
+            <div class="map-road road-v" style="left: 78%; width: 22px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- UNIVERSAL FOOTER (SHREYA INTEGRATION) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="color: #FFF; margin-bottom: 12px;">
+            <div class="logo-icon">🅿️</div>
+            <span>PARK-O-<span class="buddy">BUDDY</span></span>
+          </div>
+          <p>The modern parking marketplace connecting drivers needing safe, affordable parking with space owners looking to monetize unused bays.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="search.html">Find Parking</a></li>
+            <li><a href="host.html">Rent Parking</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Drivers</h4>
+          <ul class="footer-links">
+            <li><a href="choose-slot.html">Choose Slot</a></li>
+            <li><a href="dashboard.html">My Passes</a></li>
+            <li><a href="about.html">Help &amp; Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hosts</h4>
+          <ul class="footer-links">
+            <li><a href="host.html">Earnings Calculator</a></li>
+            <li><a href="host.html">List Driveway</a></li>
+            <li><a href="about.html">Safety Guarantee</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 PARK-O-BUDDY Inc. All rights reserved. Module by Avika.</div>
+      </div>
+    </div>
+  </footer>
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

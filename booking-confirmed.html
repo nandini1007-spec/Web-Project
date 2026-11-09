@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed — PARK-O-BUDDY</title>
+  <meta name="description" content="Your parking reservation is confirmed. Present your digital QR pass at the entry gate.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- UNIVERSAL NAVIGATION HEADER (SHREYA INTEGRATION) -->
+  <header class="navbar no-print">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🅿️</div>
+        <span>PARK-O-<span class="buddy">BUDDY</span></span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link">Find Parking</a></li>
+        <li><a href="host.html" class="nav-link">Rent Parking</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="dashboard.html" class="user-nav-pill">
+          <div class="user-avatar-sm">RS</div>
+          <span>Rahul</span>
+        </a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- BOOKING CONFIRMATION & PASS (NANDINI) -->
+  <main>
+    <div class="container">
+      <div class="confirmation-container">
+
+        <div class="success-badge">✓</div>
+        <h1 style="font-size: 2.2rem; margin-bottom: 8px;">Booking Confirmed!</h1>
+        <p class="text-muted" style="font-size: 1rem;">
+          Your parking spot is secured. Present this digital entry pass upon arrival.
+        </p>
+
+        <!-- Digital Parking Pass Ticket (Printable) -->
+        <div class="ticket-pass">
+
+          <div class="ticket-header">
+            <div>
+              <div class="ticket-label">DIGITAL PARKING PASS</div>
+              <div class="ticket-value text-green" id="passId">#POB-99824</div>
+            </div>
+            <div class="text-right">
+              <span class="badge badge-green" style="font-size: 0.85rem; padding: 6px 14px;">● VALID &amp; ACTIVE</span>
+            </div>
+          </div>
+
+          <div class="ticket-grid">
+            <div>
+              <div class="ticket-label">ASSIGNED SLOT</div>
+              <div class="ticket-value text-coral" style="font-size: 1.4rem;" id="passSlot">A3 (Level B1)</div>
+            </div>
+            <div>
+              <div class="ticket-label">VEHICLE PLATE</div>
+              <div class="ticket-value" id="passPlate">DL 03 CA 9081</div>
+            </div>
+            <div>
+              <div class="ticket-label">PARKING LOCATION</div>
+              <div class="ticket-value" id="passLocation">Green View Parking</div>
+            </div>
+            <div>
+              <div class="ticket-label">DATE &amp; SCHEDULE</div>
+              <div class="ticket-value" id="passTime">Today, 10 Sep (09:00 - 13:00)</div>
+            </div>
+          </div>
+
+          <!-- Simulated QR Code Scanner Section -->
+          <div style="text-align: center; margin: 24px 0 16px;">
+            <div class="qr-code-box">
+              <svg width="110" height="110" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="5" width="26" height="26" rx="4" stroke="#17211B" stroke-width="4" fill="none"/>
+                <rect x="11" y="11" width="14" height="14" fill="#17211B"/>
+
+                <rect x="69" y="5" width="26" height="26" rx="4" stroke="#17211B" stroke-width="4" fill="none"/>
+                <rect x="75" y="11" width="14" height="14" fill="#17211B"/>
+
+                <rect x="5" y="69" width="26" height="26" rx="4" stroke="#17211B" stroke-width="4" fill="none"/>
+                <rect x="11" y="75" width="14" height="14" fill="#17211B"/>
+
+                <rect x="38" y="10" width="8" height="8" fill="#16A36A"/>
+                <rect x="50" y="10" width="8" height="8" fill="#17211B"/>
+                <rect x="38" y="24" width="8" height="8" fill="#17211B"/>
+                <rect x="50" y="24" width="8" height="8" fill="#16A36A"/>
+
+                <rect x="10" y="38" width="8" height="8" fill="#17211B"/>
+                <rect x="24" y="38" width="8" height="8" fill="#16A36A"/>
+                <rect x="38" y="38" width="8" height="8" fill="#17211B"/>
+                <rect x="50" y="38" width="8" height="8" fill="#17211B"/>
+                <rect x="64" y="38" width="8" height="8" fill="#16A36A"/>
+                <rect x="78" y="38" width="8" height="8" fill="#17211B"/>
+
+                <rect x="10" y="50" width="8" height="8" fill="#16A36A"/>
+                <rect x="24" y="50" width="8" height="8" fill="#17211B"/>
+                <rect x="38" y="50" width="8" height="8" fill="#16A36A"/>
+                <rect x="50" y="50" width="8" height="8" fill="#17211B"/>
+                <rect x="64" y="50" width="8" height="8" fill="#17211B"/>
+                <rect x="78" y="50" width="8" height="8" fill="#16A36A"/>
+
+                <rect x="38" y="64" width="8" height="8" fill="#17211B"/>
+                <rect x="50" y="64" width="8" height="8" fill="#16A36A"/>
+                <rect x="64" y="64" width="8" height="8" fill="#17211B"/>
+                <rect x="78" y="64" width="8" height="8" fill="#17211B"/>
+
+                <rect x="38" y="78" width="8" height="8" fill="#16A36A"/>
+                <rect x="50" y="78" width="8" height="8" fill="#17211B"/>
+                <rect x="64" y="78" width="8" height="8" fill="#16A36A"/>
+                <rect x="78" y="78" width="8" height="8" fill="#17211B"/>
+              </svg>
+              <div style="font-size: 0.72rem; font-weight: 700; color: var(--dark-charcoal); letter-spacing: 0.5px; margin-top: 4px;">
+                SCAN AT ENTRY BOOM
+              </div>
+            </div>
+            <div style="font-size: 0.82rem; color: var(--text-muted);">
+              Total Paid: <strong class="text-green" id="passAmount">₹184</strong> (Payment Authorized)
+            </div>
+          </div>
+
+          <div style="background: var(--bg-muted); padding: 12px 16px; border-radius: var(--radius-md); font-size: 0.82rem; color: var(--text-muted); text-align: center;">
+            🔒 Verified Reservation: Slot is reserved solely for your vehicle. Host assistance contact: +91 98112 00412.
+          </div>
+
+        </div>
+
+        <!-- Post-Booking Action Buttons (Nandini) -->
+        <div class="no-print" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button type="button" class="btn btn-primary btn-lg" onclick="window.print()">
+            🖨️ Print / Save Pass (PDF)
+          </button>
+          <a href="dashboard.html" class="btn btn-outline btn-lg">
+            📋 View in Dashboard
+          </a>
+          <button type="button" class="btn btn-outline btn-lg" onclick="window.showToast('Navigating to Green View Parking on Google Maps...', 'info')">
+            📍 Get Directions
+          </button>
+        </div>
+
+        <div class="no-print" style="margin-top: 24px;">
+          <a href="search.html" class="text-green font-semibold" style="font-size: 0.92rem;">
+            &larr; Book another parking space
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- UNIVERSAL FOOTER (SHREYA INTEGRATION) -->
+  <footer class="footer no-print">
+    <div class="container text-center">
+      <h3>PARK-O-<span class="buddy">BUDDY</span></h3>
+      <p style="color: #9CA3AF; margin-top: 4px;">PLAN. PAY. PARK.</p>
+      <p class="text-muted" style="margin-top: 14px; font-size: 0.85rem;">&copy; 2026 PARK-O-BUDDY Inc. All rights reserved. Confirmation Module by Nandini.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

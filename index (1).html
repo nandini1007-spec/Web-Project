@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARK-O-BUDDY — Plan. Pay. Park. | Smart Parking Marketplace</title>
+  <meta name="description" content="PARK-O-BUDDY connects drivers with verified parking spots and empowers hosts to rent out empty driveways and garages.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- UNIVERSAL NAVIGATION HEADER (SHREYA) -->
+  <header class="navbar" id="mainNavbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🅿️</div>
+        <span>PARK-O-<span class="buddy">BUDDY</span></span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="search.html" class="nav-link">Find Parking</a></li>
+        <li><a href="host.html" class="nav-link">Rent Parking</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="auth.html" class="btn btn-outline btn-sm">Log In</a>
+        <a href="auth.html" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- MAIN HERO SECTION (SHREYA) -->
+  <main>
+    <section class="page-view">
+      <div class="container hero">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="eyebrow">⚡ SMART PARKING, MADE SIMPLE</div>
+            <h1 class="hero-title">Find a spot.<br>Park with <span class="text-green">ease.</span></h1>
+            <p class="hero-subtitle">
+              Reserve guaranteed parking in commercial garages, private driveways, and EV-ready bays. No more circling the block for 20 minutes.
+            </p>
+
+            <div class="hero-cta">
+              <a href="search.html" class="btn btn-primary btn-lg">Find Parking &rarr;</a>
+              <a href="host.html" class="btn btn-secondary btn-lg">Rent My Space</a>
+            </div>
+
+            <div class="trust-indicators">
+              <div class="trust-item"><span class="check">✓</span> 100% Guaranteed Space</div>
+              <div class="trust-item"><span class="check">✓</span> CCTV &amp; Guard Verified</div>
+              <div class="trust-item"><span class="check">✓</span> Instant QR Entry Pass</div>
+            </div>
+          </div>
+
+          <!-- Hero Graphic & Live Map Mockup -->
+          <div class="hero-right">
+            <div class="hero-mockup-card">
+              <div class="mockup-header">
+                <strong>📍 Live Parking Map — Cyber Hub</strong>
+                <span class="badge badge-green">4 Spots Open</span>
+              </div>
+              <div class="mockup-map">
+                <div class="map-road road-h"></div>
+                <div class="map-road road-v"></div>
+                <div class="map-pin pin-1" title="Click to view">₹30/hr</div>
+                <div class="map-pin pin-2 active" title="Active Spot">₹40/hr</div>
+                <div class="map-pin pin-3" title="Click to view">₹50/hr</div>
+              </div>
+              <div class="floating-spot-card">
+                <div>
+                  <div class="spot-tag">● AVAILABLE RIGHT NOW</div>
+                  <div class="spot-title">Green View Covered Parking</div>
+                  <div class="spot-meta">📍 0.3 km away · 24/7 CCTV · Basement 1</div>
+                </div>
+                <div class="spot-price-box">
+                  <div class="spot-price">₹40<span class="per-hr">/hr</span></div>
+                  <a href="choose-slot.html?spot=green-view" class="btn btn-primary btn-sm">Book Spot</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Search Form -->
+        <div class="search-card">
+          <h3 class="search-card-title">🔍 Where would you like to park?</h3>
+          <form id="homeSearchForm">
+            <div class="search-grid">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">📍 Destination Location</label>
+                <input type="text" id="homeLocation" class="form-input" placeholder="e.g. Cyber City, Metro Mall, Tech Park" value="Cyber City, Tech Park">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">📅 Date</label>
+                <input type="date" id="homeDate" class="form-input" value="2026-09-10">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">🕘 Check-in</label>
+                <input type="time" id="homeCheckin" class="form-input" value="09:00">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">🕘 Check-out</label>
+                <input type="time" id="homeCheckout" class="form-input" value="13:00">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <button type="submit" class="btn btn-primary btn-full" style="height: 44px;">
+                  Search Parking &rarr;
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- How It Works Section -->
+      <section class="section section-white">
+        <div class="container">
+          <div class="section-title-wrap">
+            <div class="eyebrow">HOW IT WORKS</div>
+            <h2>Park Hassle-Free in 3 Easy Steps</h2>
+            <p class="text-muted">Say goodbye to circling busy streets and overpriced impound risks.</p>
+          </div>
+
+          <div class="how-grid">
+            <div class="how-card">
+              <div class="step-num">01</div>
+              <h3>Find</h3>
+              <p class="text-muted">Search for available verified private driveways or commercial garages near your destination with upfront transparent pricing.</p>
+            </div>
+            <div class="how-card">
+              <div class="step-num">02</div>
+              <h3>Book</h3>
+              <p class="text-muted">Select your designated slot on our interactive 2D floor matrix, choose EV charging add-ons, and checkout seamlessly.</p>
+            </div>
+            <div class="how-card">
+              <div class="step-num">03</div>
+              <h3>Park</h3>
+              <p class="text-muted">Navigate right to the gate, scan your digital QR entry pass on your phone, and enjoy a stress-free parking experience.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Parking Spots Section -->
+      <section class="section">
+        <div class="container">
+          <div class="flex-between" style="margin-bottom: 32px; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <div class="eyebrow">TOP RATED SPACES</div>
+              <h2 style="font-size: 2rem;">Featured Parking Near You</h2>
+            </div>
+            <a href="search.html" class="btn btn-outline">View All Spots &rarr;</a>
+          </div>
+
+          <div class="featured-grid">
+            <div class="featured-card">
+              <div class="featured-image-placeholder">
+                🅿️
+                <span class="badge badge-green featured-badge-top">⭐ 4.8 Rating</span>
+              </div>
+              <div class="featured-body">
+                <div>
+                  <h4>Green View Parking</h4>
+                  <p class="text-muted" style="font-size: 0.88rem; margin: 4px 0 10px;">📍 Cyber City Block A · 0.3 km away</p>
+                  <div class="tags-row" style="margin-bottom: 16px;">
+                    <span class="badge badge-grey">🏠 Covered</span>
+                    <span class="badge badge-grey">🛡️ 24/7 CCTV</span>
+                    <span class="badge badge-green">⚡ Instant Pass</span>
+                  </div>
+                </div>
+                <div class="card-footer-row">
+                  <div class="price">₹40<span>/hr</span></div>
+                  <a href="choose-slot.html?spot=green-view" class="btn btn-primary btn-sm">Book Slot</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="featured-card">
+              <div class="featured-image-placeholder">
+                🏬
+                <span class="badge badge-coral featured-badge-top">⚡ EV Hub</span>
+              </div>
+              <div class="featured-body">
+                <div>
+                  <h4>Metro Mall Basement Spot</h4>
+                  <p class="text-muted" style="font-size: 0.88rem; margin: 4px 0 10px;">📍 MG Road Gate 3 · 0.5 km away</p>
+                  <div class="tags-row" style="margin-bottom: 16px;">
+                    <span class="badge badge-grey">🏠 Covered</span>
+                    <span class="badge badge-coral">⚡ Fast EV Charger</span>
+                    <span class="badge badge-grey">👮 Guarded</span>
+                  </div>
+                </div>
+                <div class="card-footer-row">
+                  <div class="price">₹30<span>/hr</span></div>
+                  <a href="choose-slot.html?spot=metro-mall" class="btn btn-primary btn-sm">Book Slot</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="featured-card">
+              <div class="featured-image-placeholder">
+                🏢
+                <span class="badge badge-green featured-badge-top">⭐ 4.9 Premium</span>
+              </div>
+              <div class="featured-body">
+                <div>
+                  <h4>Tech Park Executive Garage</h4>
+                  <p class="text-muted" style="font-size: 0.88rem; margin: 4px 0 10px;">📍 Sector 44 Plaza · 0.1 km away</p>
+                  <div class="tags-row" style="margin-bottom: 16px;">
+                    <span class="badge badge-grey">🏢 Underground</span>
+                    <span class="badge badge-grey">🛡️ CCTV</span>
+                    <span class="badge badge-coral">⚡ EV Charging</span>
+                  </div>
+                </div>
+                <div class="card-footer-row">
+                  <div class="price">₹50<span>/hr</span></div>
+                  <a href="choose-slot.html?spot=tech-park" class="btn btn-primary btn-sm">Book Slot</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Statistics Counter Banner -->
+      <section class="container">
+        <div class="stats-banner">
+          <div class="stats-banner-item">
+            <h3>15,000+</h3>
+            <p>Successful Bookings</p>
+          </div>
+          <div class="stats-banner-item">
+            <h3>1,200+</h3>
+            <p>Verified Parking Spaces</p>
+          </div>
+          <div class="stats-banner-item">
+            <h3>₹24 Lakhs+</h3>
+            <p>Earned by Local Hosts</p>
+          </div>
+          <div class="stats-banner-item">
+            <h3>4.9 / 5</h3>
+            <p>Average Parker Rating</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- User Testimonials Section -->
+      <section class="section section-white">
+        <div class="container">
+          <div class="section-title-wrap">
+            <div class="eyebrow">COMMUNITY REVIEWS</div>
+            <h2>Loved by Drivers &amp; Space Hosts</h2>
+            <p class="text-muted">Here's how PARK-O-BUDDY makes daily commuting and space monetization effortless.</p>
+          </div>
+
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-rating">★★★★★</div>
+              <p class="testimonial-text">
+                "Finding parking near Cyber Hub used to give me everyday anxiety. With PARK-O-BUDDY, I book my slot the night before, scan my pass at the gate, and walk to my office in 2 minutes. Incredible convenience!"
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">AK</div>
+                <div>
+                  <strong>Amit Kapoor</strong>
+                  <div class="text-muted" style="font-size: 0.82rem;">Senior Tech Lead · Daily Commuter</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-rating">★★★★★</div>
+              <p class="testimonial-text">
+                "I have a gated two-car driveway near the metro that sat empty while I worked from home. Listing on PARK-O-BUDDY took 3 minutes, and I now earn over ₹9,500 every month passively. Payouts arrive every Monday without delay."
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar" style="background: var(--accent-coral-light); color: var(--accent-coral);">PS</div>
+                <div>
+                  <strong>Pooja Sengupta</strong>
+                  <div class="text-muted" style="font-size: 0.82rem;">Super Host · Gurugram</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Host CTA Section -->
+      <div class="container">
+        <div class="host-cta-banner">
+          <div>
+            <h2>Have an empty driveway or parking bay?</h2>
+            <p>Turn your idle space into a recurring income stream with zero upfront investment and ₹50,000 property protection.</p>
+          </div>
+          <div>
+            <a href="host.html" class="btn btn-secondary btn-lg" style="white-space: nowrap;">List Your Space Today &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- UNIVERSAL FOOTER (SHREYA) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="color: #FFF; margin-bottom: 12px;">
+            <div class="logo-icon">🅿️</div>
+            <span>PARK-O-<span class="buddy">BUDDY</span></span>
+          </div>
+          <p>
+            The modern parking marketplace connecting drivers needing safe, affordable parking with space owners looking to monetize unused bays.
+          </p>
+          <div style="margin-top: 16px; font-weight: 700; color: var(--primary-green);">
+            PLAN. PAY. PARK.
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="search.html">Find Parking</a></li>
+            <li><a href="host.html">Rent Your Space</a></li>
+            <li><a href="about.html">About Our Mission</a></li>
+            <li><a href="dashboard.html">Parker Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Drivers</h4>
+          <ul class="footer-links">
+            <li><a href="search.html">How to Book</a></li>
+            <li><a href="choose-slot.html">Choose Slot Matrix</a></li>
+            <li><a href="search.html?filter=ev">EV Charging Spots</a></li>
+            <li><a href="about.html#faqs">Cancellation Policy</a></li>
+            <li><a href="auth.html">Create Account</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Hosts</h4>
+          <ul class="footer-links">
+            <li><a href="host.html">Earnings Calculator</a></li>
+            <li><a href="host.html#hostForm">List a Driveway</a></li>
+            <li><a href="host.html">Commercial Garages</a></li>
+            <li><a href="about.html#faqs">Host Protection Cover</a></li>
+            <li><a href="about.html">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 PARK-O-BUDDY Inc. All rights reserved. Designed for Second Evaluation.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="about.html">Privacy Policy</a>
+          <a href="about.html">Terms of Service</a>
+          <a href="about.html">Safety Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

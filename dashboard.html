@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parker Dashboard — PARK-O-BUDDY</title>
+  <meta name="description" content="Manage your active parking passes, view history, register vehicles, and manage wallet balance.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+
+<body>
+
+  <!-- UNIVERSAL NAVIGATION HEADER (SHREYA INTEGRATION) -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🅿️</div>
+        <span>PARK-O-<span class="buddy">BUDDY</span></span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link">Find Parking</a></li>
+        <li><a href="host.html" class="nav-link">Rent Parking</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="dashboard.html" class="user-nav-pill">
+          <div class="user-avatar-sm">RS</div>
+          <span class="dash-user-name">Rahul</span>
+        </a>
+        <a href="auth.html" class="btn btn-outline btn-sm" onclick="logoutUser(event)">Log Out</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- DASHBOARD MAIN CONTENT (YASHIKA) -->
+  <main>
+    <div class="container" style="padding: 36px 20px 60px;">
+
+      <div class="dashboard-layout">
+
+        <!-- Left Sidebar Navigation -->
+        <aside>
+          <div class="card" style="padding: 22px;">
+            <div class="user-profile-widget">
+              <div class="user-profile-avatar">RS</div>
+              <div>
+                <h4 class="dash-user-name" style="margin: 0; font-size: 1rem;">Rahul Sharma</h4>
+                <span class="badge badge-green" style="font-size: 0.72rem; margin-top: 3px;">Verified Parker</span>
+              </div>
+            </div>
+
+            <ul class="sidebar-menu">
+              <li>
+                <button type="button" class="active" onclick="window.switchDashTab(this, 'tab-bookings')">
+                  📋 My Bookings
+                </button>
+              </li>
+              <li>
+                <button type="button" onclick="window.switchDashTab(this, 'tab-vehicles')">
+                  🚗 My Vehicles
+                </button>
+              </li>
+              <li>
+                <button type="button" onclick="window.switchDashTab(this, 'tab-wallet')">
+                  👛 Wallet &amp; Passes
+                </button>
+              </li>
+              <li>
+                <button type="button" onclick="window.switchDashTab(this, 'tab-saved')">
+                  ⭐ Saved Spots
+                </button>
+              </li>
+              <li>
+                <button type="button" onclick="window.switchDashTab(this, 'tab-settings')">
+                  ⚙️ Account Settings
+                </button>
+              </li>
+            </ul>
+
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border-color);">
+              <a href="host.html" class="btn btn-outline-green btn-full btn-sm">
+                Switch to Host Mode 🏠
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right Content Panels Area -->
+        <div>
+
+          <div class="flex-between" style="flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
+            <div>
+              <h2 style="font-size: 1.8rem; margin: 0;">Welcome back, <span class="dash-user-name">Rahul</span> 👋</h2>
+              <p class="text-muted" style="font-size: 0.95rem;">Manage your active reservations, digital passes, and parking preferences.</p>
+            </div>
+            <a href="search.html" class="btn btn-primary btn-sm">+ Find New Parking</a>
+          </div>
+
+          <!-- Top Stats Overview -->
+          <div class="stats-grid">
+            <div class="card stat-card">
+              <span class="text-muted">ACTIVE PASSES</span>
+              <h3 class="text-green">1</h3>
+            </div>
+            <div class="card stat-card">
+              <span class="text-muted">HOURS PARKED</span>
+              <h3>38 hrs</h3>
+            </div>
+            <div class="card stat-card">
+              <span class="text-muted">TOTAL SAVED</span>
+              <h3 class="text-coral">₹1,420</h3>
+            </div>
+            <div class="card stat-card">
+              <span class="text-muted">WALLET BALANCE</span>
+              <h3 class="dash-wallet-bal">₹450</h3>
+            </div>
+          </div>
+
+          <!-- TAB 1: MY BOOKINGS -->
+          <div class="dashboard-tab-panel active" id="tab-bookings">
+            <div id="activeBookingContainer"></div>
+
+            <div class="card">
+              <div class="flex-between" style="margin-bottom: 14px;">
+                <h3 style="font-size: 1.25rem; margin: 0;">Reservation History</h3>
+                <span class="text-muted" style="font-size: 0.85rem;">Showing latest records</span>
+              </div>
+
+              <div class="data-table-wrapper">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Pass ID</th>
+                      <th>Location</th>
+                      <th>Slot</th>
+                      <th>Date &amp; Time</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Receipt</th>
+                    </tr>
+                  </thead>
+                  <tbody id="historyTbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: MY VEHICLES -->
+          <div class="dashboard-tab-panel" id="tab-vehicles">
+            <div class="card">
+              <div class="flex-between" style="margin-bottom: 20px;">
+                <div>
+                  <h3 style="font-size: 1.25rem; margin: 0;">Registered Vehicles</h3>
+                  <p class="text-muted" style="font-size: 0.88rem;">Vehicles linked to your fast-entry digital passes.</p>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('addVehicleModal').style.display='flex'">
+                  + Add Vehicle
+                </button>
+              </div>
+
+              <div id="vehiclesListContainer"></div>
+            </div>
+          </div>
+
+          <!-- TAB 3: WALLET & PASSES -->
+          <div class="dashboard-tab-panel" id="tab-wallet">
+            <div class="card" style="margin-bottom: 24px; background: linear-gradient(135deg, var(--dark-charcoal), #2A3B30); color: #FFF;">
+              <div class="flex-between" style="flex-wrap: wrap; gap: 16px;">
+                <div>
+                  <span style="font-size: 0.82rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px;">PARK-O-WALLET BALANCE</span>
+                  <div class="dash-wallet-bal" style="font-size: 2.6rem; font-weight: 800; color: var(--primary-green); margin: 4px 0;">₹450</div>
+                  <p style="font-size: 0.85rem; color: #D1D5DB;">Auto-debit enabled for instant contactless boom barrier entry.</p>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-primary" onclick="document.getElementById('addMoneyModal').style.display='flex'">
+                    + Add Money
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size: 1.25rem; margin-bottom: 16px;">Recent Wallet Transactions</h3>
+              <div class="data-table-wrapper">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Transaction ID</th>
+                      <th>Description</th>
+                      <th>Date</th>
+                      <th>Type</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#TXN-8812</td>
+                      <td>Parking Payment — Green View Slot A3</td>
+                      <td>10 Sep 2026</td>
+                      <td><span class="badge badge-grey">Debit</span></td>
+                      <td class="font-bold text-danger">-₹175</td>
+                    </tr>
+                    <tr>
+                      <td>#TXN-7419</td>
+                      <td>UPI Top-up (GPay)</td>
+                      <td>08 Sep 2026</td>
+                      <td><span class="badge badge-green">Credit</span></td>
+                      <td class="font-bold text-green">+₹500</td>
+                    </tr>
+                    <tr>
+                      <td>#TXN-6102</td>
+                      <td>Parking Payment — Metro Mall Slot B2</td>
+                      <td>04 Sep 2026</td>
+                      <td><span class="badge badge-grey">Debit</span></td>
+                      <td class="font-bold text-danger">-₹135</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: SAVED SPOTS -->
+          <div class="dashboard-tab-panel" id="tab-saved">
+            <div class="card">
+              <h3 style="font-size: 1.25rem; margin-bottom: 6px;">Favorite &amp; Frequent Spaces</h3>
+              <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 20px;">Quick-book parking spots you visit regularly.</p>
+
+              <div class="listings-grid">
+                <div class="parking-card">
+                  <div class="card-icon">🅿️</div>
+                  <div class="card-content">
+                    <div class="card-header-row">
+                      <h4>Green View Parking</h4>
+                      <span class="text-green font-bold">⭐ 4.8</span>
+                    </div>
+                    <div class="text-muted" style="font-size: 0.88rem;">📍 Cyber City Block A · Near Office Hub</div>
+                    <div class="card-footer-row">
+                      <div class="price">₹40<span>/hr</span></div>
+                      <a href="choose-slot.html?spot=green-view" class="btn btn-primary btn-sm">Book Now</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="parking-card">
+                  <div class="card-icon">🏢</div>
+                  <div class="card-content">
+                    <div class="card-header-row">
+                      <h4>Tech Park Executive Garage</h4>
+                      <span class="text-green font-bold">⭐ 4.9</span>
+                    </div>
+                    <div class="text-muted" style="font-size: 0.88rem;">📍 Tech Park Plaza Sector 44</div>
+                    <div class="card-footer-row">
+                      <div class="price">₹50<span>/hr</span></div>
+                      <a href="choose-slot.html?spot=tech-park" class="btn btn-primary btn-sm">Book Now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: ACCOUNT SETTINGS -->
+          <div class="dashboard-tab-panel" id="tab-settings">
+            <div class="card">
+              <h3 style="font-size: 1.25rem; margin-bottom: 6px;">Profile &amp; Account Settings</h3>
+              <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 24px;">Update your personal details, notification preferences, and password.</p>
+
+              <form id="accountSettingsForm">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="settingsName">Full Name</label>
+                    <input type="text" id="settingsName" class="form-input" value="Rahul Sharma" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="settingsEmail">Email Address</label>
+                    <input type="email" id="settingsEmail" class="form-input" value="rahul@example.com" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="settingsPhone">Phone Number</label>
+                    <input type="tel" id="settingsPhone" class="form-input" value="+91 98765 43210" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="settingsPassword">Update Password</label>
+                    <input type="password" id="settingsPassword" class="form-input" placeholder="Leave blank to keep current">
+                  </div>
+                </div>
+
+                <div style="margin-top: 12px;">
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL: ADD VEHICLE -->
+  <div class="modal-overlay" id="addVehicleModal">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="document.getElementById('addVehicleModal').style.display='none'">✕</button>
+      <h3 style="margin-bottom: 14px;">Add New Vehicle</h3>
+      <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 20px;">Save vehicle registration for rapid parking reservations.</p>
+
+      <form id="addVehicleForm">
+        <div class="form-group">
+          <label class="form-label">Vehicle Type</label>
+          <select id="vehicleTypeInput" class="form-select">
+            <option value="Car">Sedan / Hatchback / SUV</option>
+            <option value="Bike">Motorcycle / Scooter</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Make &amp; Model</label>
+          <input type="text" id="vehicleMakeInput" class="form-input" placeholder="e.g. Hyundai Creta" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">License Plate Number</label>
+          <input type="text" id="vehiclePlateInput" class="form-input" placeholder="e.g. DL 01 AB 1234" required style="text-transform: uppercase;">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" style="margin-top: 10px;">Save Vehicle</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD MONEY TO WALLET -->
+  <div class="modal-overlay" id="addMoneyModal">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="document.getElementById('addMoneyModal').style.display='none'">✕</button>
+      <h3 style="margin-bottom: 14px;">Add Money to Park-o-Wallet</h3>
+      <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 20px;">Instant digital top-up via UPI, NetBanking or Credit Card.</p>
+
+      <form id="addMoneyForm">
+        <div class="form-group">
+          <label class="form-label">Amount (₹)</label>
+          <input type="number" id="walletAmountInput" class="form-input" value="500" min="50" max="10000" required>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+          <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('walletAmountInput').value = '250'">+₹250</button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('walletAmountInput').value = '500'">+₹500</button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('walletAmountInput').value = '1000'">+₹1000</button>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Proceed to Pay</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- UNIVERSAL FOOTER (SHREYA INTEGRATION) -->
+  <footer class="footer">
+    <div class="container text-center">
+      <h3>PARK-O-<span class="buddy">BUDDY</span></h3>
+      <p style="color: #9CA3AF; margin-top: 4px;">PLAN. PAY. PARK.</p>
+      <p class="text-muted" style="margin-top: 14px; font-size: 0.85rem;">&copy; 2026 PARK-O-BUDDY Inc. All rights reserved. Dashboard Module by Yashika.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

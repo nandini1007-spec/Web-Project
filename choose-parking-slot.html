@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Parking Slot — PARK-O-BUDDY</title>
+  <meta name="description" content="Select your exact parking bay on our interactive 2D layout with live price calculation and vehicle compatibility.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- UNIVERSAL NAVIGATION HEADER (SHREYA INTEGRATION) -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🅿️</div>
+        <span>PARK-O-<span class="buddy">BUDDY</span></span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link">Find Parking</a></li>
+        <li><a href="host.html" class="nav-link">Rent Parking</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="auth.html" class="btn btn-outline btn-sm">Log In</a>
+        <a href="auth.html" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- CHOOSE SLOT CONTENT (NANDINI) -->
+  <main>
+    <div class="container" style="padding: 36px 20px 60px;">
+
+      <div class="flex-between" style="align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+        <div>
+          <a href="search.html" class="text-muted" style="font-size: 0.88rem; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 8px;">
+            &larr; Back to search results
+          </a>
+          <h1 id="spotTitle" style="font-size: 2.2rem; margin: 0;">Green View Parking</h1>
+          <p class="text-muted" id="spotLocation" style="margin-top: 4px;">📍 Cyber City Block A, Phase 2 · Verified Host: <strong>Ramesh K.</strong></p>
+        </div>
+        <div class="text-right">
+          <div style="font-size: 2rem; font-weight: 800; color: var(--primary-green);">
+            <span id="spotPriceHeader">₹40</span> <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">/ hr</span>
+          </div>
+          <span class="badge badge-green">⭐ 4.8 (124 reviews)</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+        <span class="badge badge-grey">🛡️ 24/7 CCTV Camera</span>
+        <span class="badge badge-grey">🏠 Covered Basement</span>
+        <span class="badge badge-coral">⚡ EV Charging Available</span>
+        <span class="badge badge-grey">📏 Height clearance: 2.4m</span>
+        <span class="badge badge-green">✓ Instant QR Entry</span>
+      </div>
+
+      <div class="slot-layout">
+
+        <!-- Left: Slot Matrix (Nandini) -->
+        <div class="card">
+          <div class="flex-between" style="border-bottom: 1px solid var(--border-color); padding-bottom: 14px; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+            <h3 style="margin: 0; font-size: 1.25rem;">Select Your Parking Slot</h3>
+
+            <div class="floor-tabs">
+              <button type="button" class="floor-btn active">Level B1</button>
+              <button type="button" class="floor-btn">Ground (L0)</button>
+              <button type="button" class="floor-btn">Level B2</button>
+            </div>
+          </div>
+
+          <div class="slot-legend">
+            <div class="legend-item">
+              <span class="legend-color" style="border: 2px solid var(--primary-green); background: #FFF;"></span>
+              <span>Available</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: var(--accent-coral);"></span>
+              <span>Selected</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #CBD5E1;"></span>
+              <span>Occupied</span>
+            </div>
+            <div class="legend-item">
+              <span style="font-size: 1rem;">⚡</span>
+              <span>EV Ready</span>
+            </div>
+          </div>
+
+          <div class="matrix-container">
+            <div class="matrix-lane-header">
+              ⬇️ VEHICLE ENTRY &amp; DRIVEWAY ⬇️
+            </div>
+
+            <div class="matrix-row">
+              <button type="button" class="slot-btn" data-slot="A1">
+                <span>A1</span>
+                <span class="slot-sub">Open</span>
+              </button>
+              <button type="button" class="slot-btn occupied" disabled title="Slot occupied">
+                <span>A2</span>
+                <span class="slot-sub">Busy</span>
+              </button>
+              <button type="button" class="slot-btn selected" data-slot="A3">
+                <span>A3</span>
+                <span class="slot-sub">Selected</span>
+              </button>
+              <button type="button" class="slot-btn" data-slot="A4">
+                <span>A4</span>
+                <span class="slot-sub">Open</span>
+              </button>
+              <button type="button" class="slot-btn" data-slot="A5">
+                <span>A5</span>
+                <span class="slot-sub">⚡ EV</span>
+              </button>
+            </div>
+
+            <div class="matrix-row">
+              <button type="button" class="slot-btn" data-slot="B1">
+                <span>B1</span>
+                <span class="slot-sub">Open</span>
+              </button>
+              <button type="button" class="slot-btn occupied" disabled title="Slot occupied">
+                <span>B2</span>
+                <span class="slot-sub">Busy</span>
+              </button>
+              <button type="button" class="slot-btn occupied" disabled title="Slot occupied">
+                <span>B3</span>
+                <span class="slot-sub">Busy</span>
+              </button>
+              <button type="button" class="slot-btn" data-slot="B4">
+                <span>B4</span>
+                <span class="slot-sub">Open</span>
+              </button>
+              <button type="button" class="slot-btn" data-slot="B5">
+                <span>B5</span>
+                <span class="slot-sub">Open</span>
+              </button>
+            </div>
+
+            <div class="matrix-row">
+              <button type="button" class="slot-btn occupied" disabled title="Slot occupied">
+                <span>C1</span>
+                <span class="slot-sub">Busy</span>
+              </button>
+              <button type="button" class="slot-btn" data-slot="C2">
+                <span>C2</span>
+                <span class="slot-sub">Open</span>
+              </button>
+              <button type="button" class="slot-btn" data-slot="C3">
+                <span>C3</span>
+                <span class="slot-sub">Open</span>
+              </button>
+              <button type="button" class="slot-btn" data-slot="C4">
+                <span>C4</span>
+                <span class="slot-sub">Open</span>
+              </button>
+              <button type="button" class="slot-btn" data-slot="C5">
+                <span>C5</span>
+                <span class="slot-sub">Open</span>
+              </button>
+            </div>
+
+            <div class="matrix-lane-header" style="margin-top: 14px; margin-bottom: 0;">
+              ⬆️ PEDESTRIAN ELEVATORS &amp; EXIT ⬆️
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; background: var(--bg-muted); padding: 16px; border-radius: var(--radius-md); font-size: 0.88rem; line-height: 1.5;">
+            <strong>💡 Host Arrival Guidance:</strong> Upon reaching Gate 2 barrier, present your in-app QR pass to the scanner. Follow the green lane markings down ramp B to Basement - 1 and park cleanly in slot <strong class="text-coral" id="slotIndicator">A3</strong>.
+          </div>
+        </div>
+
+        <!-- Right: Real-time Price Engine & Booking Summary (Nandini) -->
+        <div>
+          <div class="card summary-card">
+            <h3 style="margin-bottom: 16px; font-size: 1.3rem;">Booking Summary</h3>
+
+            <div class="summary-line">
+              <span class="text-muted">Parking Location:</span>
+              <span class="font-bold" id="summarySpotTitle">Green View Parking</span>
+            </div>
+
+            <div class="summary-line">
+              <span class="text-muted">Selected Slot:</span>
+              <span class="font-bold text-coral" id="summarySlot">Slot A3</span>
+            </div>
+
+            <div style="padding: 12px 0; border-bottom: 1px solid var(--bg-muted);">
+              <div class="form-row">
+                <div class="form-group" style="margin-bottom: 8px;">
+                  <label class="form-label">Check-in</label>
+                  <input type="time" id="slotCheckin" class="form-input" value="09:00">
+                </div>
+                <div class="form-group" style="margin-bottom: 8px;">
+                  <label class="form-label">Check-out</label>
+                  <input type="time" id="slotCheckout" class="form-input" value="13:00">
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 8px;">
+                <label class="form-label">Vehicle Category</label>
+                <select id="slotVehicleType" class="form-select">
+                  <option value="car">🚗 Sedan / Hatchback (Standard Rate)</option>
+                  <option value="suv">🚙 SUV / Pickup (+25% Premium)</option>
+                  <option value="bike">🏍️ Motorcycle / Scooter (-40% Discount)</option>
+                </select>
+              </div>
+
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; margin-top: 8px;">
+                <input type="checkbox" id="addonEvCharging" style="accent-color: var(--primary-green); width: 16px; height: 16px;">
+                <span>⚡ Add Fast EV Charging (+₹50)</span>
+              </label>
+            </div>
+
+            <div class="summary-line">
+              <span class="text-muted">Parking Charges:</span>
+              <span class="font-semibold" id="summaryBasePrice">₹160 (₹40 × 4h)</span>
+            </div>
+
+            <div class="summary-line">
+              <span class="text-muted">Platform Convenience Fee:</span>
+              <span>₹15</span>
+            </div>
+
+            <div class="summary-line">
+              <span class="text-muted">Taxes &amp; GST (5%):</span>
+              <span id="summaryTax">₹9</span>
+            </div>
+
+            <div class="summary-line summary-total">
+              <span>Total Payable:</span>
+              <span class="text-green" id="summaryTotal">₹184</span>
+            </div>
+
+            <div style="margin-top: 20px;">
+              <div class="form-group">
+                <label class="form-label" for="vehiclePlate">Vehicle License Plate</label>
+                <input type="text" id="vehiclePlate" class="form-input" placeholder="e.g. DL 03 CA 9081" value="DL 03 CA 9081" required style="text-transform: uppercase;">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="payMethod">Payment Method</label>
+                <select class="form-select" id="payMethod">
+                  <option value="wallet">👛 Park-o-Wallet (Balance: ₹450)</option>
+                  <option value="upi">📱 UPI (Google Pay, PhonePe, Paytm)</option>
+                  <option value="card">💳 Credit / Debit Card</option>
+                </select>
+              </div>
+
+              <button type="button" id="btnConfirmPay" class="btn btn-primary btn-full btn-lg" style="margin-top: 8px;">
+                Confirm &amp; Pay ₹184 &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- UNIVERSAL FOOTER (SHREYA INTEGRATION) -->
+  <footer class="footer">
+    <div class="container text-center">
+      <h3>PARK-O-<span class="buddy">BUDDY</span></h3>
+      <p style="color: #9CA3AF; margin-top: 4px;">PLAN. PAY. PARK.</p>
+      <p class="text-muted" style="margin-top: 14px; font-size: 0.85rem;">&copy; 2026 PARK-O-BUDDY Inc. All rights reserved. Slot Module by Nandini.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
